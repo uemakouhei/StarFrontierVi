@@ -6,6 +6,7 @@
   margin: 0 0 auto;
   width: 100vw;
   background-image :url('./imgs/BGIMG.jpg');
+  background-size:contain;
   overflow: hidden
 }
 
@@ -44,12 +45,27 @@
   }
 }
 .gradation {
-  font-size: 30px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  font-size: 5rem;
   font-weight: bold;
   -webkit-background-clip: text;
   color: transparent;
-  background-image: linear-gradient(red, blue);
+  background-image: linear-gradient(red, white);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 1rem;
+  border-radius: 50%; /* 丸いアイコンにするため */
+  width: 10vw; /* アイコンの幅 */
+  height: 10vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* シャドウを追加して視覚的に際立たせる */
 }
+
 .game-container {
   display: flex;
   flex-direction: column;
@@ -63,4 +79,76 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* styles.css or your relevant CSS file */
+.header-container {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  padding: 1rem;
+}
+
+
+.coin {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-image: url('./imgs/ether.png'); /* コインの画像を指定 */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  animation: collectCoin 1.5s ease-out forwards;
+}
+
+@keyframes collectCoin {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, calc(100vh - 50%)) scale(0.5);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes slideOutLeft {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+.slide-out-left {
+  animation: slideOutLeft 1s forwards;
+}
+
+/* CSS for blinking effect */
+.blinking {
+  animation: blink 0.5s step-start infinite;
+}
+
+@keyframes blink {
+  0% {
+    background-color: rgba(200, 255, 100, 0.7); /* Light yellow with transparency */
+  }
+  50% {
+    background-color: rgba(255, 255, 100, 0.1); /* Lighter yellow with more transparency */
+  }
+  100% {
+    background-color: rgba(255, 255, 100, 0.3); /* Light yellow with transparency */
+  }
 }
