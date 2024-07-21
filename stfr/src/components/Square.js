@@ -28,13 +28,13 @@ const Square = ({ piece, onClick, isSelected, isMoveable }) => {
     <div 
       onClick={onClick} 
       style={{
-        width: '50px',
-        height: '50px',
+        width: '100%',
+        height: '100%',
         border: '1px solid black',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: isSelected ? 'yellow' : (isMoveable ? 'lightyellow' : (piece && piece.player === 'player1' ? 'lightblue' : 'lightcoral'))
+        backgroundColor: isSelected ? 'yellow' : (isMoveable ?  'rgba(300,  300,100, 0.7)' : (piece && piece.player === 'player1' ?  'rgba(128, 128, 128, 0.2)':  'rgba(128, 128, 128, 0.2)'))
       }}>
       {piece && <Piece piece={piece} />}
     </div>
