@@ -10,17 +10,15 @@ function App() {
     <div className="App">
       {/* <Game /> */}
       <div className="container">
-      <Stack spacing={10} sx={{ bgcolor: "white"}} direction="raw">
+      <Stack spacing={10} sx={{ overflow:"scroll"}} direction="raw">
         {CardsData.map((card, index) => (
-          <div key={index} style={{width: "20vw"}}>
+          <div key={index} style={{width: "20vw" , color : "white" , fontStyle: "bold"}}>
             <img style={{height: "50vh"}} src={card?.Cardimg} />
-            <p>{card.Name}</p>
-            <p>HP: {card.HP}</p>
-            <p>収集力: {card.CP}</p>
-            <p>統率力: {card.LS}</p>
+            <h3>{card.Name}</h3>
+            <p>HP: {card.HP} 収集力: {card.CP} 統率力: {card.LS}</p>
+            <p style={{fontSize : "12px" , width: "100%", wordWrap : "break-word" ,textAlign:"center" , textDecoration:"underline"}} >{card?.Ceffect}</p>
             <p>マジックコスト: {card.Mcost}</p>
-            <p style={{fontSize : "12px" , width: "100%", wordWrap : "break-word" ,textAlign:"center"}} >{card?.Ceffect}</p>
-            <p style={{fontSize : "12px" , width: "100%", wordWrap : "break-word" ,textAlign:"center"}} >{card?.Meffect}</p>
+            <p style={{fontSize : "12px" , width: "100%", wordWrap : "break-word" ,textAlign:"center", textDecoration:"underline"}} >{card?.Meffect}</p>
           </div>
         ))}
     </Stack>
