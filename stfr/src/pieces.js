@@ -1,3 +1,12 @@
+
+import FEL from './imgs/Fel-Hyu.jpg';
+import CAM from './imgs/CAM-HYU.jpg';
+import SOU from './imgs/SOU-HYU.jpg';
+import SUN from './imgs/SUN-HYU.jpg';
+import BUR from './imgs/BUR-HYU.jpg';
+import NIP from './imgs/NIP-HYU.jpg';
+import SOL from './imgs/SOL-HYU.jpg';
+
 // src/pieces.js
 export const initialBoard = [
   [
@@ -117,3 +126,9 @@ export const getMoveablePositions = (piece, fromRow, fromCol, board) => {
   }
   return positions;
 };
+
+export const CardsData  = [
+  { Name : "中央情報局長官 フェルナンド"  , Cardimg : "https://lh3.googleusercontent.com/d/1OLFDkggTIgKzow5iNwBm8RuiYneN7P5Z", Chipimg : FEL  , txt : "" , HP : 2 ,CP : 2 ,LS : 2 , Ceffect : "自分のターン終了時まで、味方のソルジャーは収集に失敗した時,もう一度収集できる。",  Meffect : "相手のカードの持つ資源を2枚選択する。そのカード2枚とこのカードの持つ資源2枚と交換する。" , Mcost : 10} ,
+  { Name : "Mr. mind CEO　サンチェス -Hari Kings-"  , Cardimg : "https://lh3.googleusercontent.com/d/1z07sYSOW_WgPP3sb_u9xCJG5GaBodUoK", Chipimg : SUN  , txt : "" , HP : 2 ,CP : 2 ,LS : 3 , Ceffect : "味方が所有する資源を1枚選びこのカードの下に置く",  Meffect : "自身のフィールドのリーダー全ては、シールドを+1する。" , Mcost : 7} ,
+  { Name : "Mr. mind CEO　サンチェス -Hari Kings-"  , Cardimg : "https://lh3.googleusercontent.com/d/1z07sYSOW_WgPP3sb_u9xCJG5GaBodUoK", Chipimg : SUN  , txt : "" , HP : 2 ,CP : 2 ,LS : 3 , Ceffect : "味方が所有する資源を1枚選びこのカードの下に置く",  Meffect : "自身のフィールドのリーダー全ては、シールドを+1する。" , Mcost : 7} ,
+]
