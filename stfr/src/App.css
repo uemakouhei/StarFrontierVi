@@ -91,6 +91,10 @@
   justify-content: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* シャドウを追加して視覚的に際立たせる */
 }
+.typography-wrap {
+  word-wrap: break-word;
+  white-space: normal; /* 必要に応じて追加 */
+}
 
 
 @keyframes fadeInOut {

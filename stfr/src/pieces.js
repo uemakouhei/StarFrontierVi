@@ -11,11 +11,11 @@ import SOL from './imgs/SOL-HYU.jpg';
 export const initialBoard = [
   [
     null,
-    { type: '1', player: 'player2' },
+    { type: '2', player: 'player2' },
+    null,
+    { type: '4', player: 'player2' },
     null,
     { type: '5', player: 'player2' },
-    null,
-    { type: '3', player: 'player2' },
     null,
   ],
   [
@@ -57,7 +57,7 @@ const moveVectors = {
     [-1, 0], [-1, 1], [0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1],
   ],
   3: [
-    [-1, -1], [-1, 0], [-1, 1], [1, -1], [1, 1],
+    [-1, 0], [-1, 1], [0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1],
   ],
   4: [
     [-1, 0], [-1, 1], [0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1],
