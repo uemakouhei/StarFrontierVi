@@ -6,8 +6,12 @@
   margin: 0 0 auto;
   width: 100vw;
   background-image :url('./imgs/BGIMG.jpg');
-  background-size:contain;
+  background-size:cover;
   overflow: hidden
+}
+
+.board{
+  margin-top: 50%; 
 }
 
 .App-logo {
@@ -64,6 +68,78 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* シャドウを追加して視覚的に際立たせる */
+}
+
+.leftb {
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-size: 5rem;
+  font-weight: bold;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(green, white);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 1rem;
+  border-radius: 50%; /* 丸いアイコンにするため */
+  width: 10vw; /* アイコンの幅 */
+  height: 10vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* シャドウを追加して視覚的に際立たせる */
+}
+
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+    visibility: hidden;
+  }
+  25% {
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible;
+  }
+  75% {
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(20px);
+    visibility: hidden;
+  }
+}
+
+.gradationleft {
+  position: fixed;
+  justify-content: center;
+  text-align: center;
+  margin-top: 5%;
+  top: 0;
+  font-size: 1rem;
+  font-weight: bold;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(red, white);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 1rem;
+  border-radius: 50%; /* 丸いアイコンにするため */
+  width: 10vw; /* アイコンの幅 */
+  height: 10vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* シャドウを追加して視覚的に際立たせる */
+  opacity: 0; /* 初期状態は非表示 */
+  animation: fadeInOut 4s ease-in-out; /* アニメーションを適用 */
 }
 
 .game-container {
@@ -152,3 +228,5 @@
     background-color: rgba(255, 255, 100, 0.3); /* Light yellow with transparency */
   }
 }
+
+

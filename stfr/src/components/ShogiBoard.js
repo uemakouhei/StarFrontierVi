@@ -4,7 +4,7 @@ import Square from './Square';
 
 const ShogiBoard = ({ board, onSquareClick, selectedPiece, moveablePositions }) => {
   return (
-    <div className="board" style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 55px)', gridTemplateRows: 'repeat(7, 55px)'}}>
+    <div className='board'  style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 45px)', gridTemplateRows: 'repeat(7, 45px)'}}>
       {board.map((row, rowIndex) => 
         row.map((piece, colIndex) => 
           <Square 

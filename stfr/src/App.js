@@ -8,8 +8,8 @@ import { CardsData } from './pieces';
 function App() {
   return (
     <div className="App">
-      {/* <Game /> */}
-      <div className="container">
+      <Game />
+      {/* <div className="container">
       <Stack spacing={10} sx={{ overflow:"scroll"}} direction="raw">
         {CardsData.map((card, index) => (
           <div key={index} style={{width: "20vw" , color : "white" , fontStyle: "bold"}}>
@@ -22,7 +22,7 @@ function App() {
           </div>
         ))}
     </Stack>
-    </div>
+    </div> */}
     </div>
   );
 }

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
+import "../Effect/Fire.css";
 import "../App.css";
 import ShogiBoard from "./ShogiBoard";
 import { initialBoard, canMove, getMoveablePositions } from "../pieces";
-import TIA from "../Cards/TIA-CER.png";
-import JAC from "../Cards/JAC-CER.png";
-import DAN from "../Cards/DAN-CER.png";
 import Stack from "@mui/material/Stack";
-import { Dialog, DialogContent } from "@mui/material";
+import { Badge, Button, Dialog, DialogContent, Typography } from "@mui/material";
+import { CardsData } from "../pieces";
 
 const Game = () => {
   const [board, setBoard] = useState(initialBoard);
@@ -17,6 +16,52 @@ const Game = () => {
   const [movesThisTurn, setMovesThisTurn] = useState(0);
   const [movelimit, setmovelimit] = useState(0);
   const [choiceCard, setChoiceCard] = useState(null);
+  const [haveEther , sethaveEther] = useState(0);
+  const [activeCard, setActiveCard] = useState(null);
+  const ShieldBadge = ({ number }) => (
+    <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px' }}>
+      <svg
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        style={{ position: 'absolute', top: 0, left: 0 }}
+      >
+        <path
+          d="M12 2L3 6V11C3 16.52 7.58 21.74 12 22C16.42 21.74 21 16.52 21 11V6L12 2Z"
+          fill="currentColor"
+        />
+      </svg>
+      <span
+        style={{
+          position: 'relative',
+          color: 'white',
+          fontWeight: 'bold',
+          fontSize: '12px', // 数字が小さくなりすぎる場合は調整してください
+        }}
+      >
+        {number}
+      </span>
+    </div>
+  );
+  
+
+  const GoldText = ({ children }) => {
+    return <div className="GOLD">{children}</div>;
+  };
+
+
+  const [P1cards, setp1cards] = useState([
+    CardsData[0],
+    CardsData[4],
+    CardsData[2],
+  ]);
+  const [P2cards, setp2cards] = useState([
+    CardsData[0],
+    CardsData[4],
+    CardsData[2],
+  ]);
 
   useEffect(() => {
     const coins = document.querySelectorAll(".coin");
@@ -53,6 +98,7 @@ const Game = () => {
 
         // etherタイプの駒が破壊された場合にコインのアニメーションを実行
         if (capturedPiece && capturedPiece.type === "ether") {
+          sethaveEther((hEther) => hEther + 1)
           handleCollectCoin();
         }
 
@@ -107,41 +153,43 @@ const Game = () => {
         fullWidth
         PaperProps={{
           style: {
-            backgroundColor: 'transparent', // ダイアログの紙部分を透明にする
-            boxShadow: 'none', // シャドウを無効にする
+            backgroundColor: "transparent", // ダイアログの紙部分を透明にする
+            boxShadow: "none", // シャドウを無効にする
           },
         }}
         BackdropProps={{
           style: {
-            backgroundColor: 'rgba(0, 0, 0, 0.5)', // 背景の透明度を設定
+            backgroundColor: "rgba(0, 0, 0, 0.5)", // 背景の透明度を設定
           },
         }}
         maxWidth="sm"
       >
         <DialogContent>
+          <GoldText >Choice  Phase</GoldText>
+          <Typography sx={{color : "white" , textAlign : "center"}} variant="caption">リーダーを選択してください。</Typography>
           <Stack spacing={2} direction="row">
             <img
               style={{ width: "30%" }}
-              src={TIA}
+              src={P1cards[0]?.Cardimg}
               onClick={() => {
                 setmovelimit(3);
-                setChoiceCard(TIA);
+                setChoiceCard(P1cards[0]);
               }}
             />
             <img
               style={{ width: "30%" }}
-              src={DAN}
+              src={P1cards[1]?.Cardimg}
               onClick={() => {
                 setmovelimit(4);
-                setChoiceCard(DAN);
+                setChoiceCard(P1cards[1]);
               }}
             />
             <img
               style={{ width: "30%" }}
-              src={JAC}
+              src={P1cards[2]?.Cardimg}
               onClick={() => {
                 setmovelimit(2);
-                setChoiceCard(JAC);
+                setChoiceCard(P1cards[2]);
               }}
             />
           </Stack>
@@ -155,8 +203,41 @@ const Game = () => {
           moveablePositions={moveablePositions}
         />
       </div>
-      <div className="gradation">{movelimit - movesThisTurn}</div>
-      {choiceCard ? <img style={{ width: "10%" }} src={choiceCard} /> : null}
+      <div direction="raw" className="gradation">
+        {movelimit - movesThisTurn}
+      </div>
+      <div direction="raw" className="leftb">
+            {haveEther}
+      </div>
+      {choiceCard ? (  <div direction="raw" className="gradationleft">
+         <GoldText >Choice  Phase</GoldText>
+      </div>) : (null)}
+      {choiceCard ? (
+        <Stack spacing={2} direction="row" sx={{width: "90%"}}>
+        {P1cards?.map((card) => (
+          <div
+            key={card?.Cardimg}
+            className={choiceCard?.Cardimg == card?.Cardimg ? "reflection" :""}
+          >
+            <Badge
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "left",
+            }}
+            badgeContent={<ShieldBadge number={card?.HP} />}
+            >
+              <img
+                style={{ width: "100%" }}
+                src={card?.Cardimg}
+                onClick={() => {}}
+                alt=""
+              />
+            </Badge>
+            <button className="MagicB">Magic</button>
+          </div>
+        ))}
+      </Stack>
+      ) : null}
     </div>
   );
 };
