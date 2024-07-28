@@ -17,7 +17,9 @@ import {
   Typography,
 } from "@mui/material";
 import { CardsData } from "../pieces";
-import setup from "debug/src/common";
+import CHSOUND from '../ChoiceSound.mp3';
+import GSOUND from '../GetE.mp3';
+import ETH from '../imgs/ether.png';
 
 const Game = () => {
   const [start, setstartup] = useState(true);
@@ -29,10 +31,48 @@ const Game = () => {
   const [movesThisTurn, setMovesThisTurn] = useState(0);
   const [movelimit, setmovelimit] = useState(0);
   const [choiceCard, setChoiceCard] = useState(null);
-  const [haveEther, sethaveEther] = useState(0);
+  const [haveEther, sethaveEther] = useState({ player1 : 0 , player2 : 0});
   const [slctcard, setslctCard] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [GS , setGS] = useState(null);
+  const [CS , setCS] = useState(null);
   const open = Boolean(anchorEl);
+
+  useEffect(() => {
+    const GetS = new Audio(GSOUND);
+    const ChoS= new Audio(CHSOUND);
+    GetS.load(); // 音声ファイルの事前ロード
+    ChoS.load();
+    setCS(ChoS);
+    setGS(GetS);
+  },[])
+  const playSound = (sound) => {
+    sound.pause();  // 再生中の音声を停止
+    sound.currentTime = 0;  // 再生位置をリセット
+    sound.play();  // 新たに再生
+  };
+
+
+  const ETHS = ({ haveether }) => {
+    return (
+      <div direction="raw" className="leftb">
+        {Array.from({ length: haveEther?.player1 }).map((_, index) => (
+          <img
+            key={index}
+            src={ETH}
+            className="ether-image"
+            style={{ left: `${index * 10}px`}} // 位置をずらす
+          />
+        ))}
+      </div>
+    );
+  };
+  
+
+  function playSoundMenu(Sound) {
+    const audio = new Audio(Sound);
+    audio.play();
+  };
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -134,7 +174,12 @@ const Game = () => {
 
         // etherタイプの駒が破壊された場合にコインのアニメーションを実行
         if (capturedPiece && capturedPiece.type === "ether") {
-          sethaveEther((hEther) => hEther + 1);
+          //sethaveEther((hEther) => hEther + selectedPiece?.piece?.CP);
+          sethaveEther(prevState => ({
+            ...prevState,
+            player1: prevState.player1 + selectedPiece?.piece?.CP
+          }));
+          playSound(GS);
           handleCollectCoin();
         }
 
@@ -228,6 +273,7 @@ const Game = () => {
                 style={{ width: "30%" }}
                 src={card?.Cardimg}
                 onClick={() => {
+                  playSound(CS);
                   setmovelimit(3);
                   setChoiceCard(card);
                 }}
@@ -249,7 +295,10 @@ const Game = () => {
         {movelimit - movesThisTurn}
       </div>
       <div direction="raw" className="leftb">
-        {haveEther}
+           <ETHS haveether={haveEther.player1}/>
+      </div>
+      <div direction="raw" className="bottomb">
+              {haveEther.player1}
       </div>
       {choiceCard ? (
         <div direction="raw" className="gradationleft">
@@ -270,7 +319,7 @@ const Game = () => {
                   vertical: "top",
                   horizontal: "left",
                 }}
-                badgeContent={<ShieldBadge number={card?.HP} />}
+                badgeContent={<div>{choiceCard?.Cardimg == card?.Cardimg  ? ( <GoldText>R</GoldText>) : (<CRYSTALText>N</CRYSTALText>)}<ShieldBadge number={card?.HP} /></div>}
               >
                 <img
                   style={{ width: "100%" }}

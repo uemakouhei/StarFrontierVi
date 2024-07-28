@@ -7,7 +7,8 @@
   width: 100vw;
   background-image :url('./imgs/BGIMG.jpg');
   background-size:cover;
-  overflow: hidden
+  overflow: none;
+  position : fixed
 }
 
 .board{
@@ -70,9 +71,36 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* シャドウを追加して視覚的に際立たせる */
 }
 
+.gradationlcenter{
+  margin-top: auto;
+  margin-bottom: auto;
+  position: fixed;
+  justify-content: center;
+  text-align: center;
+  top: 0;
+  font-size: 1rem;
+  font-weight: bold;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(red, white);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 1rem;
+  border-radius: 50%; /* 丸いアイコンにするため */
+  width: 100vw; /* アイコンの幅 */
+  height: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* シャドウを追加して視覚的に際立たせる */
+  opacity: 0; /* 初期状態は非表示 */
+  animation: fadeInOut 4s ease-in-out; /* アニメーションを適用 */
+}
+
 .leftb {
   position: fixed;
-  top: 0;
+  bottom: 0;
   left: 0;
   font-size: 5rem;
   font-weight: bold;
@@ -83,13 +111,43 @@
   background-position: center;
   background-repeat: no-repeat;
   padding: 1rem;
-  border-radius: 50%; /* 丸いアイコンにするため */
-  width: 10vw; /* アイコンの幅 */
-  height: 10vw;
+  width: 100vw; /* アイコンの幅 */
+  height : 5vh;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* シャドウを追加して視覚的に際立たせる */
+  z-index: 10000;
+  opacity: 100%;
+}
+
+.bottomb {
+  position: fixed;
+  bottom: 0;
+  Right: 0;
+  font-size: 5rem;
+  font-weight: bold;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(green, white);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 1rem;
+  width: 5vw; /* アイコンの幅 */
+  height : 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  opacity: 90%;
+}
+
+.ether-image {
+  position: absolute; /* 子要素をabsoluteに設定 */
+  width: 5vwpx; /* 必要に応じて画像の幅を調整 */
+  height: auto; /* 必要に応じて画像の高さを調整 */
+  /* 他のスタイル */
 }
 .typography-wrap {
   word-wrap: break-word;
@@ -148,6 +206,8 @@
 
 .game-container {
   display: flex;
+  overflow: none;
+  position: fixed;
   flex-direction: column;
   align-items: center;
   justify-content: center;
